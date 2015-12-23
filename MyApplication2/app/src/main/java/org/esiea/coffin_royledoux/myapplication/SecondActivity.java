@@ -1,17 +1,30 @@
 package org.esiea.coffin_royledoux.myapplication;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 public class SecondActivity extends ActionBarActivity {
 
+    private static final String TAG = "Debugging";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        
+        GetBiersService.startActionBiers(this);
+
+        IntentFilter intentFilter = new IntentFilter(BIERS_UPDATE);
+        LocalBroadcastManager.getInstance(this).registerReceiver(new BiersUpdate(), intentFilter);
     }
 
     @Override
@@ -34,5 +47,18 @@ public class SecondActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static final String BIERS_UPDATE = "com.octip.cours.INF4042_11.BIERS_UPDATE";
+
+    public class BiersUpdate extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, getIntent().getAction());
+            //Ajouter une notification
+
+        }
+
     }
 }
