@@ -90,8 +90,15 @@ public class GetBiersServices extends IntentService {
 
             }
 
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (ProtocolException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 }
+

@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     tools:context="org.esiea.coffin_royledoux.myapplication.SecondActivity">
 
-    <include android:id="@+id/my_toolbar"
-        layout="@layout/barre"/>
 
     <TextView
         android:text="@string/hello_world"

@@ -2,8 +2,10 @@ package org.esiea.coffin_royledoux.myapplication;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -15,10 +17,8 @@ import android.widget.Toast;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,19 +29,19 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DateFormat;
-import java.util.Date;
 
 
+import com.google.android.gms.appindexing.Action;
 
 public class SecondActivity extends ActionBarActivity {
 
@@ -49,8 +49,8 @@ public class SecondActivity extends ActionBarActivity {
     //public static final String BIERS_UPDATE = "com.octip.cours.INF4042_11.BIERS_UPDATE";
     private RecyclerView rv_bieres = null;
     private JSONArray json;
-    private AlertDialog.Builder ad = null;
-    private AlertDialog alertDialog = null;
+    //private AlertDialog.Builder ad = null;
+    //private AlertDialog alertDialog = null;
     private GoogleApiClient client;
 
     @Override
@@ -71,16 +71,16 @@ public class SecondActivity extends ActionBarActivity {
         IntentFilter intentFilter = new IntentFilter(BIERS_UPDATE);
         LocalBroadcastManager.getInstance(this).registerReceiver(new BiersUpdate(), intentFilter);
 
-        ad = new AlertDialog.Builder(this);
+       // ad = new AlertDialog.Builder(this);
         btn_hw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alertDialog.show();
-
+                //alertDialog.show();
+                Toast.makeText(getApplicationContext(),getString(R.string.hello_world),Toast.LENGTH_LONG).show();
             }
         });
 
-
+/*
         ad = new AlertDialog.Builder(this).setTitle("Validation").setMessage("Souahitez-vous valider cette action ?").setPositiveButton("yes", new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which){
                 Toast.makeText(getApplicationContext(),getString(R.string.hello_world),Toast.LENGTH_LONG).show();
@@ -95,7 +95,7 @@ public class SecondActivity extends ActionBarActivity {
         alertDialog = ad.create();
         LayoutInflater inflater = alertDialog.getLayoutInflater();
         View dialoglayout = inflater.inflate(R.layout.dialog, frameView);
-
+*/
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
@@ -168,6 +168,7 @@ public class SecondActivity extends ActionBarActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, getIntent().getAction());
+            //Ajouter une notification
             // Mettre une notification ici
             rv_bieres.setAdapter(new BiersAdapter(getBiersFromFile()));
         }
@@ -235,8 +236,6 @@ public class SecondActivity extends ActionBarActivity {
             public BierHolder(View itemView) {
                 super(itemView);
                 name = (TextView) itemView.findViewById(R.id.rv_bier_element_name);
-
-
 
             }
         }
