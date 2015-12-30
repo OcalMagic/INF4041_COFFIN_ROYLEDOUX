@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.app.DatePickerDialog;
 
 import android.content.DialogInterface;
 import android.net.Uri;
@@ -46,12 +45,13 @@ import java.util.Date;
 
 public class SecondActivity extends ActionBarActivity {
 
-    private static final String TAG = "Debugging";
-    public static final String BIERS_UPDATE = "com.octip.cours.INF4042_11.BIERS_UPDATE";
-    private RecyclerView rv_bieres=null;
+    private static final String TAG = "GetBiersServices";
+    //public static final String BIERS_UPDATE = "com.octip.cours.INF4042_11.BIERS_UPDATE";
+    private RecyclerView rv_bieres = null;
     private JSONArray json;
     private AlertDialog.Builder ad = null;
     private AlertDialog alertDialog = null;
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +59,14 @@ public class SecondActivity extends ActionBarActivity {
         setContentView(R.layout.activity_second);
         TextView btn_hw = (TextView) findViewById(R.id.btn_hello_world);
         
-        GetBiersServices.startActionBiers(this);
+        GetBiersServices.startActionGet_All_Biers(this);
 
         rv_bieres = (RecyclerView) findViewById(R.id.rv_biere);
         rv_bieres.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         json = getBiersFromFile();
         rv_bieres.setAdapter(new BiersAdapter(json));
+
+        GetBiersServices.startActionGet_All_Biers(this);
 
         IntentFilter intentFilter = new IntentFilter(BIERS_UPDATE);
         LocalBroadcastManager.getInstance(this).registerReceiver(new BiersUpdate(), intentFilter);
@@ -93,6 +95,8 @@ public class SecondActivity extends ActionBarActivity {
         alertDialog = ad.create();
         LayoutInflater inflater = alertDialog.getLayoutInflater();
         View dialoglayout = inflater.inflate(R.layout.dialog, frameView);
+
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -115,6 +119,48 @@ public class SecondActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static final String BIERS_UPDATE = "com.octip.inf4042_11.BIERS_UPDATE";
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://org.esiea.coffin_royledoux.myapplication/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://org.esiea.coffin_royledoux.myapplication/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
     }
 
     public class BiersUpdate extends BroadcastReceiver {
@@ -194,7 +240,5 @@ public class SecondActivity extends ActionBarActivity {
 
             }
         }
-
-
     }
 }

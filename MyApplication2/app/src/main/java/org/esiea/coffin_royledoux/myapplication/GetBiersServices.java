@@ -31,12 +31,12 @@ import java.net.URL;
 public class GetBiersServices extends IntentService {
     // TODO: Rename actions, choose action names that describe tasks that this
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
-    private static final String ACTION_GET_ALL_BIERS = "org.esiea.daoust_clement.pppproject.action.GET_ALL_BIERS";
+    private static final String ACTION_GET_ALL_BIERS = "org.esiea.coffin_royledoux.myapplication.action.GET_ALL_BIERS";
     private static final String TAG ="GetBiersServices";
-    //public static final String BIERS_UPDATE ="com.octip.cours.INF4042_11.BIERS_UPDATE";
+    public static final String BIERS_UPDATE ="com.octip.cours.INF4042_11.BIERS_UPDATE";
 
     // TODO: Customize helper method
-    public static void startActionBiers(Context context) {
+    public static void startActionGet_All_Biers(Context context) {
         Intent intent = new Intent(context, GetBiersServices.class);
         intent.setAction(ACTION_GET_ALL_BIERS);
         context.startService(intent);
@@ -54,7 +54,6 @@ public class GetBiersServices extends IntentService {
                 handleActionGet_All_Biers();
             }
         }
-
     }
 
     private void copyInputStreamToFile(InputStream in, File file){
@@ -72,11 +71,6 @@ public class GetBiersServices extends IntentService {
                  e.printStackTrace();
         }
     }
-
-
-
-
-
 
     private void handleActionGet_All_Biers() {
         // TODO: Handle action Get_All_Biers
@@ -99,6 +93,4 @@ public class GetBiersServices extends IntentService {
             e.printStackTrace();
         }
     }
-
-
 }
