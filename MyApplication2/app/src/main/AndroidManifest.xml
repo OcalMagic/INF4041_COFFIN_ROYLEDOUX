@@ -24,10 +24,6 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
 
-        <service
-            android:name=".GetBiersService"
-            android:exported="false" >
-        </service>
     </application>
 
 </manifest>
