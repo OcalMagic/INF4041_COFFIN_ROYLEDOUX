@@ -11,6 +11,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+
 
 public class SecondActivity extends ActionBarActivity {
 
@@ -57,8 +66,30 @@ public class SecondActivity extends ActionBarActivity {
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, getIntent().getAction());
             //Ajouter une notification
-
         }
 
+    }
+
+    public JSONArray getBiersFromFile() {
+
+        try {
+            InputStream is = new FileInputStream(getCacheDir() + "/" + "bieres.json");
+            byte[] buffer = new byte[is.available()];
+            is.read(buffer);
+            is.close();
+
+            return new JSONArray(new String(buffer, "UTF-8"));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+
+            return new JSONArray();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            return new JSONArray();
+
+        }
     }
 }

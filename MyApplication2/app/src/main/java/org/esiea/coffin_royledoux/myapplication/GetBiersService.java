@@ -72,7 +72,6 @@ public class GetBiersService extends IntentService {
             e.printStackTrace();
         }
 
-
     }
 
     private void copyInputStreamToFile(InputStream in, File file) {
