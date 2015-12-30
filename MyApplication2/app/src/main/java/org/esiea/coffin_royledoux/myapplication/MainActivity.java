@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        btn_hw.setText("Accéder aux bières");
         btn_hw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
