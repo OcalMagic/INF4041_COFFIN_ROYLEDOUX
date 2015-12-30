@@ -57,8 +57,7 @@ public class SecondActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        TextView btn_hw = (TextView) findViewById(R.id.btn_hello_world);
-        
+
         GetBiersServices.startActionGet_All_Biers(this);
 
         rv_bieres = (RecyclerView) findViewById(R.id.rv_biere);
@@ -71,7 +70,7 @@ public class SecondActivity extends ActionBarActivity {
         IntentFilter intentFilter = new IntentFilter(BIERS_UPDATE);
         LocalBroadcastManager.getInstance(this).registerReceiver(new BiersUpdate(), intentFilter);
 
-       // ad = new AlertDialog.Builder(this);
+       /* ad = new AlertDialog.Builder(this);
         btn_hw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +79,6 @@ public class SecondActivity extends ActionBarActivity {
             }
         });
 
-/*
         ad = new AlertDialog.Builder(this).setTitle("Validation").setMessage("Souahitez-vous valider cette action ?").setPositiveButton("yes", new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which){
                 Toast.makeText(getApplicationContext(),getString(R.string.hello_world),Toast.LENGTH_LONG).show();
@@ -167,9 +165,9 @@ public class SecondActivity extends ActionBarActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(TAG, getIntent().getAction());
+            Log.d(TAG, intent.getAction());
             //Ajouter une notification
-            // Mettre une notification ici
+            Toast.makeText(getApplicationContext(), "Fin de téléchargement", Toast.LENGTH_LONG).show();
             rv_bieres.setAdapter(new BiersAdapter(getBiersFromFile()));
         }
     }

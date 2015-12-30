@@ -8,26 +8,14 @@
     tools:context="org.esiea.coffin_royledoux.myapplication.SecondActivity">
 
 
-    <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_hello_world"
-        android:gravity="center"
-        android:layout_below="@+id/my_toolbar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp" />
-
     <android.support.v7.widget.RecyclerView
         app:theme="@style/AppTheme"
         android:id="@+id/rv_biere"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:layout_below="@+id/btn_hello_world"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp" />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
