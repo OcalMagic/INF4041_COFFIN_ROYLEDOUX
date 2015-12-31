@@ -80,30 +80,6 @@ public class BiereBelge extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter(BIERS_UPDATE);
         LocalBroadcastManager.getInstance(this).registerReceiver(new BiersUpdate(), intentFilter);
 
-       /* ad = new AlertDialog.Builder(this);
-        btn_hw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //alertDialog.show();
-                Toast.makeText(getApplicationContext(),getString(R.string.hello_world),Toast.LENGTH_LONG).show();
-            }
-        });
-
-        ad = new AlertDialog.Builder(this).setTitle("Validation").setMessage("Souahitez-vous valider cette action ?").setPositiveButton("yes", new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog, int which){
-                Toast.makeText(getApplicationContext(),getString(R.string.hello_world),Toast.LENGTH_LONG).show();
-            }
-        }).setNegativeButton("No",new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog, int which){
-                Toast.makeText(getApplicationContext(), getString(R.string.text), Toast.LENGTH_LONG).show();
-            }
-        }).setIcon(android.R.drawable.ic_dialog_alert);
-        final FrameLayout frameView = new FrameLayout(this);
-        ad.setView(frameView);
-        alertDialog = ad.create();
-        LayoutInflater inflater = alertDialog.getLayoutInflater();
-        View dialoglayout = inflater.inflate(R.layout.dialog, frameView);
-*/
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
@@ -177,7 +153,7 @@ public class BiereBelge extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, intent.getAction());
             //Ajouter une notification
-            Toast.makeText(getApplicationContext(), "Fin de téléchargement", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Fin de téléchargement", Toast.LENGTH_SHORT).show();
             rv_bieres.setAdapter(new BiersAdapter(getBiersFromFile()));
         }
     }
@@ -227,6 +203,9 @@ public class BiereBelge extends AppCompatActivity {
 
                     String jS= jObj.getString("name");
                     bierHolder.name.setText(jS);
+                    bierHolder.name.setVisibility(View.VISIBLE);
+                }else{
+                    bierHolder.name.setVisibility(View.GONE);
                 }
 
 
@@ -253,5 +232,4 @@ public class BiereBelge extends AppCompatActivity {
             }
         }
     }
-
 }

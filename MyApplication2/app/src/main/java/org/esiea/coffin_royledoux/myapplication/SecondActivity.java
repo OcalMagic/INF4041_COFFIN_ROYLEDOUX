@@ -170,7 +170,7 @@ public class SecondActivity extends ActionBarActivity {
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, intent.getAction());
             //Ajouter une notification
-            Toast.makeText(getApplicationContext(), "Fin de téléchargement", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Fin de téléchargement", Toast.LENGTH_SHORT).show();
             rv_bieres.setAdapter(new BiersAdapter(getBiersFromFile()));
         }
     }

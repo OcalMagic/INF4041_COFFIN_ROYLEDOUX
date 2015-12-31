@@ -44,8 +44,7 @@
         </activity>
         <activity
             android:name=".BiereBelge"
-            android:label="@string/title_activity_biere_belge"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:label="@string/title_activity_biere_belge">
         </activity>
     </application>
 
