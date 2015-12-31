@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        btn_hw.setText("Accéder aux bières");
+        btn_hw.setText("Accéder à la liste des bières");
         btn_hw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 intent_test();
             }
         });
-        btn_1.setText("Accéder aux bières françaises");
+        btn_1.setText("Bières françaises");
         btn_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 biere_fr();
             }
         });
-        btn_2.setText("Accéder aux bières belges");
+        btn_2.setText("Bières belges");
         btn_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

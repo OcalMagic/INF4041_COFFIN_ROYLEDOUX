@@ -213,9 +213,19 @@ public class SecondActivity extends ActionBarActivity {
         public void onBindViewHolder(BierHolder bierHolder, int i) {
 
             try{
-                JSONObject jObj= biers.getJSONObject(i);
+                final JSONObject jObj= biers.getJSONObject(i);
                 String jS= jObj.getString("name");
+
+                //final String id = jObj.getString("id");
+
                 bierHolder.name.setText(jS);
+                bierHolder.name.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Toast.makeText(getApplicationContext(), getString(R.string.msg), Toast.LENGTH_LONG).show();
+                        show_description();
+                    }
+                });
 
 
             } catch (JSONException e) {
@@ -240,5 +250,11 @@ public class SecondActivity extends ActionBarActivity {
 
             }
         }
+    }
+
+
+    private void show_description(){
+        Intent tIntent = new Intent(this, MainActivity.class);
+        startActivity(tIntent);
     }
 }
