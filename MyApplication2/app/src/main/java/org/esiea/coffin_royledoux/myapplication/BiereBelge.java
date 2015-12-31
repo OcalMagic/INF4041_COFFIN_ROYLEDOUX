@@ -62,6 +62,8 @@ public class BiereBelge extends AppCompatActivity {
     //private AlertDialog.Builder ad = null;
     //private AlertDialog alertDialog = null;
     private GoogleApiClient client;
+    public static String description;
+    public static String nom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,7 +198,7 @@ public class BiereBelge extends AppCompatActivity {
         public void onBindViewHolder(BierHolder bierHolder, int i) {
 
             try{
-                JSONObject jObj= biers.getJSONObject(i);
+                final JSONObject jObj= biers.getJSONObject(i);
 
 
                 if (jObj.getString("country_id").equals("3") ) {
@@ -204,6 +206,13 @@ public class BiereBelge extends AppCompatActivity {
                     String jS= jObj.getString("name");
                     bierHolder.name.setText(jS);
                     bierHolder.name.setVisibility(View.VISIBLE);
+                    bierHolder.name.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //Toast.makeText(getApplicationContext(), getString(R.string.msg), Toast.LENGTH_LONG).show();
+                            show_description(jObj);
+                        }
+                    });
                 }else{
                     bierHolder.name.setVisibility(View.GONE);
                 }
@@ -231,5 +240,20 @@ public class BiereBelge extends AppCompatActivity {
 
             }
         }
+    }
+
+    private void show_description(JSONObject biere){
+        //Intent tIntent = new Intent(this, MainActivity.class);
+        //startActivity(tIntent);
+        try {
+            description = biere.getString("description");
+            nom = biere.getString("name");
+            InformationFragment_Be informationFragment = new InformationFragment_Be();
+            informationFragment.show(getSupportFragmentManager().beginTransaction(), "dialog_information");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }

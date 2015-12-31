@@ -55,6 +55,8 @@ public class SecondActivity extends ActionBarActivity {
     //private AlertDialog.Builder ad = null;
     //private AlertDialog alertDialog = null;
     private GoogleApiClient client;
+    public static String description;
+    public static String nom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,30 +75,6 @@ public class SecondActivity extends ActionBarActivity {
         IntentFilter intentFilter = new IntentFilter(BIERS_UPDATE);
         LocalBroadcastManager.getInstance(this).registerReceiver(new BiersUpdate(), intentFilter);
 
-       /* ad = new AlertDialog.Builder(this);
-        btn_hw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //alertDialog.show();
-                Toast.makeText(getApplicationContext(),getString(R.string.hello_world),Toast.LENGTH_LONG).show();
-            }
-        });
-
-        ad = new AlertDialog.Builder(this).setTitle("Validation").setMessage("Souahitez-vous valider cette action ?").setPositiveButton("yes", new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog, int which){
-                Toast.makeText(getApplicationContext(),getString(R.string.hello_world),Toast.LENGTH_LONG).show();
-            }
-        }).setNegativeButton("No",new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog, int which){
-                Toast.makeText(getApplicationContext(), getString(R.string.text), Toast.LENGTH_LONG).show();
-            }
-        }).setIcon(android.R.drawable.ic_dialog_alert);
-        final FrameLayout frameView = new FrameLayout(this);
-        ad.setView(frameView);
-        alertDialog = ad.create();
-        LayoutInflater inflater = alertDialog.getLayoutInflater();
-        View dialoglayout = inflater.inflate(R.layout.dialog, frameView);
-*/
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
@@ -209,8 +187,7 @@ public class SecondActivity extends ActionBarActivity {
 
         }
 
-        @Override
-        public void onBindViewHolder(BierHolder bierHolder, int i) {
+         public void onBindViewHolder(final BierHolder bierHolder, int i) {
 
             try{
                 final JSONObject jObj= biers.getJSONObject(i);
@@ -223,7 +200,7 @@ public class SecondActivity extends ActionBarActivity {
                     @Override
                     public void onClick(View v) {
                         //Toast.makeText(getApplicationContext(), getString(R.string.msg), Toast.LENGTH_LONG).show();
-                        show_description();
+                        show_description(jObj);
                     }
                 });
 
@@ -253,8 +230,18 @@ public class SecondActivity extends ActionBarActivity {
     }
 
 
-    private void show_description(){
-        Intent tIntent = new Intent(this, MainActivity.class);
-        startActivity(tIntent);
+    private void show_description(JSONObject biere){
+        //Intent tIntent = new Intent(this, MainActivity.class);
+        //startActivity(tIntent);
+        try {
+            description = biere.getString("description");
+            nom = biere.getString("name");
+            InformationFragment informationFragment = new InformationFragment();
+            informationFragment.show(getSupportFragmentManager().beginTransaction(), "dialog_information");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }
