@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView tv_hw = (TextView)findViewById(R.id.tv_hello_world);
         Button btn_hw = (Button)findViewById(R.id.btn_hello_world);
+        Button btn_1 = (Button)findViewById(R.id.btn_1);
+        Button btn_2 = (Button)findViewById(R.id.btn_2);
+
 
         dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -59,6 +62,22 @@ public class MainActivity extends AppCompatActivity {
                 intent_test();
             }
         });
+        btn_1.setText("Accéder aux bières françaises");
+        btn_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getApplicationContext(), getString(R.string.msg), Toast.LENGTH_LONG).show();
+                biere_fr();
+            }
+        });
+        btn_2.setText("Accéder aux bières belges");
+        btn_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getApplicationContext(), getString(R.string.msg), Toast.LENGTH_LONG).show();
+                biere_be();
+            }
+        });
 
     }
 
@@ -66,6 +85,17 @@ public class MainActivity extends AppCompatActivity {
         Intent tIntent = new Intent(this, SecondActivity.class);
         startActivity(tIntent);
     }
+
+    private void biere_fr(){
+        Intent tIntent = new Intent(this, BiereFrancaise.class);
+        startActivity(tIntent);
+    }
+
+    private void biere_be(){
+        Intent tIntent = new Intent(this, BiereBelge.class);
+        startActivity(tIntent);
+    }
+
     private void notification_test() {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.notification_template_icon_bg)

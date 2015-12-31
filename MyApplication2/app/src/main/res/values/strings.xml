@@ -7,4 +7,6 @@
     <string name="button">Button</string>
     <string name="text">Text</string>
     <string name="title_activity_second">SecondActivity</string>
+    <string name="title_activity_biere_francaise">BiereFrancaise</string>
+    <string name="title_activity_biere_belge">BiereBelge</string>
 </resources>

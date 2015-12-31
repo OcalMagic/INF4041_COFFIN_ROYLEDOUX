@@ -1,5 +1,12 @@
 package org.esiea.coffin_royledoux.myapplication;
 
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -46,7 +53,7 @@ import java.util.List;
 
 import com.google.android.gms.appindexing.Action;
 
-public class SecondActivity extends ActionBarActivity {
+public class BiereFrancaise extends AppCompatActivity {
 
     private static final String TAG = "GetBiersServices";
     //public static final String BIERS_UPDATE = "com.octip.cours.INF4042_11.BIERS_UPDATE";
@@ -59,11 +66,11 @@ public class SecondActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_biere_francaise);
 
         GetBiersServices.startActionGet_All_Biers(this);
 
-        rv_bieres = (RecyclerView) findViewById(R.id.rv_biere);
+        rv_bieres = (RecyclerView) findViewById(R.id.rv_bierefr);
         rv_bieres.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         json = getBiersFromFile();
         rv_bieres.setAdapter(new BiersAdapter(json));
@@ -103,7 +110,7 @@ public class SecondActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_second, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -203,7 +210,7 @@ public class SecondActivity extends ActionBarActivity {
 
             LayoutInflater li = LayoutInflater.from(viewGroup.getContext());
 
-                View v = li.inflate(R.layout.rv_bier, viewGroup, false);
+            View v = li.inflate(R.layout.content_biere_francaise, viewGroup, false);
 
             return new BierHolder(v);
 
@@ -214,8 +221,13 @@ public class SecondActivity extends ActionBarActivity {
 
             try{
                 JSONObject jObj= biers.getJSONObject(i);
-                String jS= jObj.getString("name");
-                bierHolder.name.setText(jS);
+
+
+                if (jObj.getString("country_id").equals("12") ) {
+
+                    String jS= jObj.getString("name");
+                    bierHolder.name.setText(jS);
+                }
 
 
             } catch (JSONException e) {
@@ -236,9 +248,10 @@ public class SecondActivity extends ActionBarActivity {
 
             public BierHolder(View itemView) {
                 super(itemView);
-                name = (Button) itemView.findViewById(R.id.rv_bier_element_name);
+                name = (Button) itemView.findViewById(R.id.rv_bier_element_name_fr);
 
             }
         }
     }
+
 }
