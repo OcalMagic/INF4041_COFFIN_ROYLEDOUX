@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 intent_test();
             }
         });
-        btn_1.setText("Bières françaises");
+        btn_1.setText("Les françaises");
         btn_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 biere_fr();
             }
         });
-        btn_2.setText("Bières belges");
+        btn_2.setText("Les belges");
         btn_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
