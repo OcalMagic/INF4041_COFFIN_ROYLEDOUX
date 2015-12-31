@@ -81,7 +81,7 @@ public class SecondActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_second, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -94,6 +94,8 @@ public class SecondActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent tIntent = new Intent(this, MainActivity.class);
+            startActivity(tIntent);
             return true;
         }
 
@@ -148,7 +150,7 @@ public class SecondActivity extends ActionBarActivity {
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, intent.getAction());
             //Ajouter une notification
-            Toast.makeText(getApplicationContext(), "Fin de téléchargement", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.dwld, Toast.LENGTH_SHORT).show();
             rv_bieres.setAdapter(new BiersAdapter(getBiersFromFile()));
         }
     }

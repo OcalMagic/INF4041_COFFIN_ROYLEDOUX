@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Mon Application</string>
-
     <string name="hello_world">Bonjour le Monde</string>
+
     <string name="action_settings">Réglages</string>
+    <string name="action_menu">Menu</string>
+
     <string name="button">Boutton</string>
     <string name="text">Texte</string>
+    <string name="dwld">Téléchargement Fini</string>
+
+    <string name="title_activity_main">La Bière</string>
+    <string name="title_activity_second">Toutes les Bières</string>
+    <string name="title_activity_biere_francaise">Bières Française</string>
+    <string name="title_activity_biere_belge">Bières Belge</string>
+
 </resources>

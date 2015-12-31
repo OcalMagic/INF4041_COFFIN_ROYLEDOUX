@@ -3,10 +3,15 @@
     <string name="hello_world">Hello world!</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_menu">Menu</string>
 
     <string name="button">Button</string>
     <string name="text">Text</string>
-    <string name="title_activity_second">SecondActivity</string>
-    <string name="title_activity_biere_francaise">BiereFrancaise</string>
-    <string name="title_activity_biere_belge">BiereBelge</string>
+    <string name="dwld">Download finished</string>
+
+    <string name="title_activity_main">Beer</string>
+    <string name="title_activity_second">All Beer</string>
+    <string name="title_activity_biere_francaise">French Beer</string>
+    <string name="title_activity_biere_belge">Belgian Beer</string>
+
 </resources>

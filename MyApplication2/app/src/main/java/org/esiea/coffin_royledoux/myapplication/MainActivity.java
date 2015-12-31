@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        btn_hw.setText("Accéder à la liste des bières");
+        btn_hw.setText(R.string.title_activity_main);
         btn_hw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 intent_test();
             }
         });
-        btn_1.setText("Les françaises");
+        btn_1.setText(R.string.title_activity_biere_francaise);
         btn_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 biere_fr();
             }
         });
-        btn_2.setText("Les belges");
+        btn_2.setText(R.string.title_activity_biere_belge);
         btn_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void notification_test() {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.notification_template_icon_bg)
+                .setSmallIcon(R.drawable.drapeau_francais)
                 .setContentTitle("My notification")
                 .setContentText("Hello World !");
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -122,10 +122,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent tIntent = new Intent(this, MainActivity.class);
+            startActivity(tIntent);
             return true;
-        }
-        if (id == R.id.toast_me){
-            Toast.makeText(getApplicationContext(), R.string.hello_world, Toast.LENGTH_LONG).show();
         }
 
         return super.onOptionsItemSelected(item);

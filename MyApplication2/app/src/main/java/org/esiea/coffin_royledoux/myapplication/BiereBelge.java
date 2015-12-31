@@ -101,6 +101,8 @@ public class BiereBelge extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent tIntent = new Intent(this, MainActivity.class);
+            startActivity(tIntent);
             return true;
         }
 
@@ -155,7 +157,7 @@ public class BiereBelge extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, intent.getAction());
             //Ajouter une notification
-            Toast.makeText(getApplicationContext(), "Fin de téléchargement", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.dwld, Toast.LENGTH_SHORT).show();
             rv_bieres.setAdapter(new BiersAdapter(getBiersFromFile()));
         }
     }
